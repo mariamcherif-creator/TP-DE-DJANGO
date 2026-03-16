@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <title>Mon Site Django</title>
+</head>
+<body>
+    <h1>Bienvenue sur mon site Django !</h1>
+
+    <h2>Compteur de mots</h2>
+    <form method="POST" action="counter">
+        {% csrf_token %}
+        <textarea name="text" rows="5" cols="30"></textarea><br>
+        <input type="submit" value="Compter">
+    </form>
+
+    <br>
+    {% if user.is_authenticated %}
+        <a href="logout">Logout</a>
+    {% else %}
+        <a href="login">Login</a>
+    {% endif %}
+
+    <h2>Fonctionnalités</h2>
+    {% for feature in features %}
+        <p>{{ feature.name }} - {{ feature.details }}</p>
+    {% endfor %}
+
+</body>
+</html>
